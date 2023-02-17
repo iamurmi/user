@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package domain;
+
+option go_package= "small-user/user";
+/*
+Here, we are telling the gRPC compiler that the piece of code starting with the "service" keyword should be treated as a gRPC service. 
+The method preceded with the "rpc" keyword indicates that it's a Remote Procedure Call and the compiler should generate appropriate stubs for client and server runtime.
+*/
+service User {
+    rpc AddUser(AddUserRequest) returns (AddUserResponse) {};
+	rpc GetUser(GetUserRequest)  returns(GetUserResponse) {};
+	rpc GetUsers(ListUsersRequest) returns (ListUsersResponse) {};
+}
+
+/*
+
+A message in gRPC terminology is something which can be used as a message(message is defined using protobuf syntax) to one service from another service. 
+*/
+//USER
+message UserData{
+    string id =1;
+    string first_name = 2;
+    repeated string roles = 3;
+}
+
+//ADD USER
+message AddUserRequest {
+    UserData user = 1;
+}
+message AddUserResponse {
+    string id =1;
+}
+
+//GET USER
+message GetUserRequest {
+    string id =1;
+}
+message GetUserResponse {
+    UserData user =1;
+}
+
+//LIST USERS
+message ListUsersRequest {
+}
+message ListUsersResponse {
+    repeated UserData users =1;
+}
