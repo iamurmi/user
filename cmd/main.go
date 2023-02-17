@@ -4,10 +4,11 @@ import (
 	"context"
 	"log"
 	"net"
-	user "small-mic/user/domain/protobuf"
-	repocache "small-mic/user/repoCache"
-	"small-mic/user/repositories"
-	userservice "small-mic/user/userService"
+
+	user "github.com/iamurmi/user/domain/protobuf"
+	repocache "github.com/iamurmi/user/repoCache"
+	"github.com/iamurmi/user/repositories"
+	userservice "github.com/iamurmi/user/userService"
 
 	"github.com/go-redis/redis/v7"
 	"google.golang.org/grpc"

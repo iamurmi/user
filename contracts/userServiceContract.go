@@ -2,7 +2,8 @@ package contracts
 
 import (
 	"context"
-	userPB "small-mic/user/domain/protobuf"
+
+	userPB "github.com/iamurmi/user/domain/protobuf"
 )
 
 type UserSeriveContract interface {

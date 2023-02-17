@@ -4,7 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"small-mic/user/domain"
+
+	"github.com/iamurmi/user/domain"
 
 	"github.com/go-redis/redis/v7"
 )

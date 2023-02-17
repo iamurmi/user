@@ -5,9 +5,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"small-mic/user/contracts"
-	"small-mic/user/domain"
-	userPB "small-mic/user/domain/protobuf"
+
+	"github.com/iamurmi/user/contracts"
+	"github.com/iamurmi/user/domain"
+	userPB "github.com/iamurmi/user/domain/protobuf"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )

@@ -4,7 +4,8 @@ package repositories
 import (
 	"context"
 	"fmt"
-	"small-mic/user/domain"
+
+	"github.com/iamurmi/user/domain"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

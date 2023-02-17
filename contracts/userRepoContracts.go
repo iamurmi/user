@@ -2,7 +2,8 @@ package contracts
 
 import (
 	"context"
-	"small-mic/user/domain"
+
+	"github.com/iamurmi/user/domain"
 )
 
 type UserRepoContracts interface {
