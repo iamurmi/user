@@ -43,7 +43,7 @@ func main() {
 
 	// GIN SERVER
 	// eng := gin.New()
-	// eng.Use(gin.Recovery())                // middleware. it is use for handling Panic
+	// eng.Use(gin.Recovery()) // middleware. it is use for handling Panic
 	// userservice.NewRoutes(eng, userSvcObj) // NewRoutes is a Initializer of Transport layer
 	// eng.Run(":3000")
 

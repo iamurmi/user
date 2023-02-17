@@ -42,6 +42,7 @@ type Routes struct {
 	userClient userPB.UserClient
 }
 
+// GRPC specific Constructor
 func NewUserRoutes(userClient userPB.UserClient) *Routes {
 	return &Routes{
 		userClient: userClient,
