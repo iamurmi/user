@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package domain;
 
-option go_package= "small-user/user";
+option go_package= "github.com/iamurmi/user";
 /*
 Here, we are telling the gRPC compiler that the piece of code starting with the "service" keyword should be treated as a gRPC service. 
 The method preceded with the "rpc" keyword indicates that it's a Remote Procedure Call and the compiler should generate appropriate stubs for client and server runtime.

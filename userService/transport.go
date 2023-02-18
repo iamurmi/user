@@ -39,27 +39,29 @@ func FailedResponse(data interface{}, err error) (resp ResponseWrap) {
 // End of RESP Wrapper
 
 type Routes struct {
-	userClient userPB.UserClient
+	userClient  userPB.UserClient
+	routerGroup *gin.RouterGroup
 }
 
 // GRPC specific Constructor
-func NewUserRoutes(userClient userPB.UserClient) *Routes {
+func NewUserRoutes(userClient userPB.UserClient, routerGroup *gin.RouterGroup) *Routes {
 	return &Routes{
-		userClient: userClient,
+		userClient:  userClient,
+		routerGroup: routerGroup,
 	}
 }
 
 // Handler Apis call
-func (r *Routes) NewRoutes(e *gin.Engine, svcObj contracts.UserSeriveContract) { // Initializer of Transport layer
-	e.POST("/tusi/api/smallmic/adduser", r.AddUserHandler(svcObj))
-	e.GET("/tusi/api/smallmic/getuser/:id", r.GetUserHandler(svcObj))
-	e.GET("/tusi/api/smallmic/getusers", r.GetUsersHandler(svcObj))
+func (r *Routes) RegisterRoutes(svcObj contracts.UserSeriveContract) { // Initializer of Transport layer
+	r.routerGroup.POST("/tusi/api/smallmic/adduser", r.AddUserHandler())
+	r.routerGroup.GET("/tusi/api/smallmic/getuser/:id", r.GetUserHandler())
+	r.routerGroup.GET("/tusi/api/smallmic/getusers", r.GetUsersHandler())
 }
 
 // Handler Functions
 // When we want to call this function we doesnt have to pass context, but we need the context for decoding json to struct, so here i create an anonymous function who take context as arguments which doest not required to pass
 
-func (r *Routes) AddUserHandler(svc contracts.UserSeriveContract) func(c *gin.Context) {
+func (r *Routes) AddUserHandler() func(c *gin.Context) {
 	return func(c *gin.Context) {
 		var user domain.User
 		err := c.ShouldBindJSON(&user) // postman request stored inside of c (gin context).
@@ -90,7 +92,7 @@ func (r *Routes) AddUserHandler(svc contracts.UserSeriveContract) func(c *gin.Co
 	}
 }
 
-func (r *Routes) GetUserHandler(svc contracts.UserSeriveContract) func(c *gin.Context) {
+func (r *Routes) GetUserHandler() func(c *gin.Context) {
 	return func(c *gin.Context) {
 		id := c.Param("id")
 		//Svc call
@@ -114,7 +116,7 @@ func (r *Routes) GetUserHandler(svc contracts.UserSeriveContract) func(c *gin.Co
 	}
 }
 
-func (r *Routes) GetUsersHandler(svc contracts.UserSeriveContract) func(c *gin.Context) {
+func (r *Routes) GetUsersHandler() func(c *gin.Context) {
 	return func(c *gin.Context) {
 		//Svc call
 		// resp, err := svc.GetUsers(c)

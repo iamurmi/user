@@ -41,12 +41,6 @@ func main() {
 	*/
 	userSvcObj := userservice.NewServiceConstructor(userRepoObj, redisUserRepoObj)
 
-	// GIN SERVER
-	// eng := gin.New()
-	// eng.Use(gin.Recovery()) // middleware. it is use for handling Panic
-	// userservice.NewRoutes(eng, userSvcObj) // NewRoutes is a Initializer of Transport layer
-	// eng.Run(":3000")
-
 	// GRPC SERVER
 	listener, err := net.Listen("tcp", "3000")
 	if err != nil {
